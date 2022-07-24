@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ...keys 内是包含实参的一个真实的数组，而 arguments 是一个伪数组
+        // 1.可以给函数的形参 赋默认值
+        function fn(a ,b){
+            a = a || 10;  //如果a有被传递值，那么值就是自己，如果没被传递值，那么值就是10
+            b = b || 20;
+            console.log(a+b)
+        }
+        fn(20); //40
+
+        function fn1(a=10,b=20){
+            console.log(a+b)
+        }
+        fn1(20);
+
+        // 2.剩余运算符，如果传递的实参 数量多，形参可以可以 ...keys，必须起名，什么名字都可以
+        // ...keys 内是包含实参的一个真实的数组，而 arguments 是一个伪数组
+        function pick(obj,...keys){
+            // console.log(keys)  //返回的 是包含 实参的一个真实的数组
+            let result = Object.create(null)
+            for(let i = 0; i < keys.length; i++){
+                result[keys[i]] = obj[keys[i]];
+            }
+            return console.log(result);
+        }
+        let obj = {
+            title : 'es6教程',
+            author: '小马哥',
+            age : 24
+        }
+        pick(obj, 'title','author','age')
+
+        // 3.扩展运算符  ...  将数组 分割成一个个的参数 再调用
+        let arr = [10,23,12,40,56,30]
+        // es5做法
+        // console.log(Math.max.apply(Math,arr))  //56
+        // es6做法
+        console.log(Math.max(...arr))
+        console.log(...arr)
+
+        console.log({...obj})
+    </script>
+</body>
+</html>

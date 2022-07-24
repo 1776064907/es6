@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组方法与 for of 配合
+        // 1.数据结构里 有 iterator，就可以使用for of遍历
+        // 1. 数组.keys()  返回的是一个数组迭代器
+        let arr = [1,2,3]
+        console.log(arr.keys())
+        const a = arr.values();
+        console.log(a.next())
+        for(let index of arr.keys()){
+            console.log(index) // 0,1 ,2
+        }
+
+        // 2.数组.values()  遍历数组的值
+        for(let values of arr.values()){
+            console.log(values) //1 ,2,3
+        }
+
+        // 3.数组.entries()  以键值对的形式遍历数组
+        for(let [index,value] of arr.entries()){
+            console.log(index,value) //0 1 , 1 2 , 2 3
+        }
+
+        // 4.迭代器里的 next()
+        let iter = arr.entries();
+        console.log(iter.next()); //{value: Array(2), done: false}
+        console.log(iter.next()); //{value: Array(2), done: false}
+        console.log(iter.next());//{value: Array(2), done: false}
+        console.log(iter.next());//{value: undefined, done: true}
+    </script>
+</body>
+</html>

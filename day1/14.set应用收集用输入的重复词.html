@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 100px ;
+        }
+        ul{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name="" id="">
+    <ul></ul>
+    <script>
+        // 收集用户输入重复次数多的关键字
+        let input = document.querySelector('input')
+        let ul = document.querySelector('ul')
+        let btn = document.querySelector('button')
+        let arr = [];
+        let obj = {
+            data : new Set() , //  obj.data = new Set()
+            keyword(word){
+                // 每执行一次失焦事件，就会set里面就会增加一个值，但是重复的值，会被覆盖
+                this.data.add(word)
+                console.log(this.data)
+            },
+            show(){
+                // 这里先要把ul里面的li清除掉
+                ul.innerHTML = ''
+                this.data.forEach(function(value){
+                   ul.innerHTML += `<li>${value}</li>`
+                })
+            }
+        }
+        input.addEventListener('blur',function(){
+            obj.keyword(this.value);
+            obj.show();
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.promise.resolve(),是promise对象成功状态的一种简写
+        Promise.resolve('zhandge').then(name=>{
+            console.log(name)//zhangde
+        })
+        // 等价与
+        new Promise(resolve=>{
+            resolve('张德');
+        }).then(data=>console.log(data)) //张德
+
+        // 2.当promise.resolve(),传递的参数是简单数据类型时
+        // then的回调函数会直接接收传递过来的参数
+        Promise.resolve('success').then(data=>console.log(data))//success
+
+        // 3.当resolve(),传递的是一个新的promise对象时
+        // 那后面的then就跟根据新的promise对象的状态来判断是执行那个回调函数
+        const p = new Promise((resolve,reject)=>{
+            setTimeout(()=>{ resolve('加油') },2000)
+            // resolve('加油')
+        })
+        Promise.resolve(p).then(data=>console.log(data)) //加油
+
+        new Promise(resolve=>resolve(p)).then(data=>console.log(data))//加油
+
+        console.log(Promise.resolve(p) === p) //true
+
+        // 4.promise.reject()方法是promise失败状态的简写
+        Promise.reject('失败').catch(data=>console.log(data))//失败
+
+        // 5.不管是什么参数，都会原封不动的向后传递
+        Promise.reject(p).catch(data=>console.log(data))
+    </script>
+</body>
+</html>

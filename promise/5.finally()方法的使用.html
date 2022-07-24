@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.finally()方法分类promise对象处于什么状态它都会执行,无状态不执行
+        // 2.它不能接收参数
+        new Promise((resolve,reject)=>{
+            resolve(123);
+            reject(456);
+        }).finally(err=>{
+            console.log(err) //undefined
+        })
+    </script>
+</body>
+</html>

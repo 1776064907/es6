@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let zd = new Set('123456789')
+        console.log(zd) //{1,2,3,4,5,6,7,8,9}
+        // 把集合中 大于5的过滤掉
+        console.log([...zd])  // ...符号是把数组分割成一个个元素， 返回的不是数组形式，所以要加中括号
+        zd = new Set([...zd].filter(item => item <= 5))  //
+        console.log(zd)
+
+        // 把数组中 重复的数组元素去掉
+        let arr = [1,2,3,4,5,6,3,2,1]
+         arr = [...new Set(arr)]
+        console.log(arr)
+    </script>
+</body>
+</html>

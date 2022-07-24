@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.resolve和 reject执行后，后面的代码也能执行
+        // 开发中不建议这样做，所有一般用 return 返回resolve和reject函数
+        const p = new Promise((resolve, reject) => {
+            return resolve();
+            //    return reject();
+            console.log('zhandge') //zhandge
+        })
+
+
+        // 2.Promise.all/race/allsettled的参数问题
+        // 3.只要有迭代器的对象都可以当成参数传递进去
+        // 例如：array，set,map,Nodelist,arguments
+        // 4.一般传递的数组元素都是promise对象，如果传递的不是promise对象，那么他们会被自动转换成promise对象,并且默认都是成功状态
+        const p1 = Promise.all(new Set([1, 2, 3]))
+        // 等价于 
+        const p2 = Promise.all(new Set([
+            Promise.resolve(1),
+            Promise.resolve(2),
+            Promise.resolve(3),
+        ]))
+        p2.then(
+            data => console.log(data) //1,2,3
+        )
+
+        // .Promise.all / race / allsettled的错误问题
+        // 5.如果这个all和race都没有第二个回调函数，那他们需要用catch捕捉
+        const delay = ms => {
+            return new Promise(resolve => {
+                setTimeout(resolve, ms)
+            })
+        }
+        const p3 = delay(1000).then(() => {
+            console.log('p1已完成')
+            // 1.为下一个then的第一个回调函数传递参数
+            // return 'p3'
+            return Promise.reject('123')
+        }).catch(data=>{
+            console.log(data)
+            // 因为使用catch返回的也是一个新promise对象，它的下一个then默认是成功状态
+            return 'p3'
+        })
+        
+        const p4 = delay(1500).then(() => {
+            console.log('p2已完成')
+            return 'p4'
+            // return Promise.reject('失败')
+        })
+
+        const p5 = new Promise(resolve => resolve('p5'))
+
+        const pall = Promise.all([p3, p4, p5])
+        pall.then(
+            (data) => { console.log(data) })// ['p3', 'p4', 'p5'] 
+    </script>
+</body>
+
+</html>

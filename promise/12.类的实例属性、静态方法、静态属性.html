@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.实例属性
+        class Person {
+            // 1.可以直接在constructor外面设置属性
+            age = 24;
+            constructor(name){
+                this.name = name;
+            }
+            // 2.在函数外面添加方法，就相当于在类的原型对象里添加方法，这些方法是共有的，节约内存
+            speak(){
+                console.log(456)
+            }
+        }
+        // Person.prototype.speak = function(){
+        //     console.log(123)
+        // }
+        const p = new Person('张德')
+        p.speak()
+        console.log(p.name,p.age) //张德 ，24
+        
+        // 2.给类本身添加方法和属性
+        class Person1 {
+            constructor(){}
+            // 如果给类本身添加方法，就在函数前面加static
+            static work(){
+                console.log('不想打工')
+            }
+            // 也可以通过函数形式添加给类添加属性
+            static property(){
+                return 100
+            }
+        }
+        Person1.work();
+        console.log(Person1.property())//100
+    </script>
+</body>
+</html>

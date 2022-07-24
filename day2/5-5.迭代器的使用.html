@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 
+        // 1，字符串，数组，伪数组，集合，arguments对象，都有迭代器
+        // 2.iterator 是一个接口，只要数据类型有 iterator接口都可以实现 for of遍历，所以 对象 不能实现for of循环
+        // 3.有 iterator接口的数据类型里，都有一个 symbol.iterator()，方法
+        // 4.symbol.iterator()拥有next方法，拥有依次遍历数据结构里的成员
+        // 5.每次遍历返回的是 一个对象{value:值 ， done：false}
+        //   value：当前遍历的结果   done：记录是否遍历完成
+        let set = new Set([12,34,{a:56},[7,8],9])
+        console.log(set)
+        const set1 = set[Symbol.iterator]()
+        console.log(set1)
+        console.log(set1.next())  //{value: 12, done: false}
+        console.log(set1.next())  //{value: 34, done: false}
+        console.log(set1.next())  //{value: {…}, done: false}
+        console.log(set1.next())  //{value: Array(2), done: false}
+        console.log(set1.next())  //{value: 9, done: false}
+        console.log(set1.next())  //{value: undefined, done: true}
+        for(let k of set1){
+            console.log(k)
+        }
+    </script>
+</body>
+</html>

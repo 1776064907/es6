@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.注意：如果错误状态一直没有被捕捉，那么错误就会一直往下传
+        // 2.一般工作中then只写一个回调函数
+        new Promise((resolve,reject)=>{
+            // resolve(123);
+            reject('error');
+        }).then(data => {
+            console.log(data)
+        })
+        //2.catch()方法是专门用来捕捉错误rejected状态的，它返回的也是一个新的promise对象
+        .catch(err=>{
+            console.log(err)
+            // 可以又return自定义错误
+            // return new Promise((resolve,reject)=>{
+            //     reject('error');
+            // })
+
+            // 也可以用 throw new Error
+                throw new Error('eason')
+        }).then(data=>{
+            console.log(data) //undefined
+        }).catch(err=>{
+            console.log(err)
+        })
+
+    </script>
+</body>
+
+</html>

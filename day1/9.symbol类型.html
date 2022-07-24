@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- symbol 是 一个基本数据类型 -->
+    <script>
+        // 注意：把symbol(), 看成是一个独一无二的字符串
+        // 1.第一种定义方式   symbol();
+        // 2.获取symbol里的描述   变量.dscription;
+        // 3.symbol(), 是一个独一无二的字符串
+        // 4.symbol(),不能被 枚举 ，例如 for循环 ，for in ，
+        const name = Symbol('name');
+        const name1 = Symbol('name');
+        console.log(name === name1) //false
+        console.log(name,name1)   //Symbol('name') Symbol('name')
+        console.log(name.description)  //获得symbol里的描述
+        let obj = {
+            // '李四' : 100,
+            // '李四': 20,
+            [name]: 100,   //如果想让属性名是 变量 ，需要加中括号
+            [name1]: 20,
+        }
+        // console.log(obj)  //只有一个李四， 下面的属性覆盖了上面的
+        console.log(obj)  //此时没有被覆盖
+        console.log(obj[name]) ; //当属性名是一个变量 ，调用的时候也要加[]
+        
+        // 1.第二周定义方式  symbol.for('描述')
+        // 2.symbol.keyfor(变量); 只能获得symbol.for('描述') 里的描述，不能获得 symbol()里面的
+        // 3.symbol.for(),可以被多次调用
+        const a = Symbol.for('a');
+        const b = Symbol.for('a');
+        console.log(a,b  )//Symbol.for('a')Symbol.for('a')
+        console.log(a === b );//true
+        const obj1 = {
+            [a] : '100分',
+            [b] : '30分',
+            [Symbol.for('b')] : 10,
+            [Symbol.for('b')] : 20,
+        }
+        console.log(obj1); //此时下面的 覆盖了上面的
+
+        // symbol(),不能被 枚举 ，例如 for循环 ，for in ，
+        const obj3 = {
+            [Symbol('李四')] : '李四',
+            age : 24,
+        }
+        for (let key in obj3){
+            console.log(key)  // 只有一个age
+        }
+        console.log(Object.getOwnPropertySymbols(obj1))  //在对象中遍历出 只包含symbol类型的属性 的数组
+        console.log(Reflect.ownKeys(obj3))
+
+    
+    </script>
+</body>
+</html>

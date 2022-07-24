@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const set = new Set();
+        // 添加元素 变量.add()
+        let obj = {
+            a: 10, b: 20
+        }
+        set.add('jie')
+        set.add(obj)
+        set.add([1, 2, 3])
+        set.add('zhangde')
+        console.log(set)
+
+        // 删除元素  变量.delete  放回的是
+        // 1.delete删除数组或者对象类型的元素时，是根据变量的内存地址来删除的。所以先需要定义
+        // 2.返回的是boolean值 ，当没有这个元素返回的是false
+        let arr = [4, 5]
+        set.add(arr)
+        console.log(set.delete(arr)) //true
+        console.log(set.delete('zhangde'))  //返回的是boolean值 ，当没有这个元素返回的是false
+        console.log(set)
+
+        // 1.检测set中是否含有该值  变量.has(值)；
+        // 2. 返回的是一个boolean 值，但不没有这个值返回的是 false
+        // 3.当检测的数据是数组和对象 元素时，是根据 变量的内存地址来 查找的，所以先需要定义
+        console.log(set.has('jie')) //true
+        console.log(set.has(obj)) //true
+        console.log(set.has('abc')) //false
+
+        // 检测 set的长度  变量.size
+        console.log(set.size)  //3
+
+        // 查看元素个数
+        console.log(set.values())
+
+        // 清除集合内所有 数据 变量.clear()
+        // set.clear();
+        // console.log(set);
+
+    </script>
+</body>
+
+</html>

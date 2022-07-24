@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.Array.of(),将任意数据类型，保存到数组中,与object.assign()很像
+        let arr = [1, 2, 3]
+        let obj = { a: 4, b: [5, 6] }
+        let fack = Array.of(arr, obj, 7, 8, 9)
+        console.log(fack) //
+
+        // 2.数组.copywithin(target，start,end)
+        // target  从该索引号位置 替换
+        // start  从该索引号开始 读取数据 ，默认值为0
+        // end  从该数组长度位置 结束读取 ， 默认值为数组的长度
+        let arr1 = [1, 2,3,4, 5, 6, 7]
+        let newArr1 = arr1.copyWithin(2,4)//表示从索引号2的位置开始替换，索引号4开始读取567，然后从3的位置开始替换
+        console.log(newArr1)
+        let arr2 = [1,2,3,4,5,6,7]
+        let newArr2 = arr2.copyWithin(1, 3,5)//从索引号1的位置开始替换，从索引号3开始读取，数组长度5结束读取，读取到4,5, 从数字2开始替换
+        console.log(newArr2) // 1,4,5,4,5,6,7
+
+        // 3.数组.find() 找的数组中第一个满足 条件的数组元素，返回值是数组元素
+        let arr3 = [1,4,-1,-2,5]
+        let arr4 = arr3.find(item => item<0)
+        console.log(arr4) //-1
+
+        // 4.数组.findindex ,找的数组中第一个符号 条件的数组索引，返回值是索引号
+        let arr5 = arr3.findIndex(item => item<0)
+        console.log(arr5) //2
+
+    </script>
+</body>
+
+</html>

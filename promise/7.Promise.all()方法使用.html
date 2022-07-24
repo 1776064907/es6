@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const delay = ms => {
+            return new Promise(resolve => {
+                setTimeout(resolve, ms)
+            })
+        }
+        const p1 = delay(1000).then(() => {
+            console.log('p1已完成')
+            // 1.为下一个then的第一个回调函数传递参数
+            return 'p1'
+            // return Promise.reject('123')
+
+        })
+        const p2 = delay(1500).then(() => {
+            console.log('p2已完成')
+            return 'p2'
+            // return Promise.reject('失败')
+        })
+        const p3 = new Promise(resolve=>resolve('p3'))
+        // 2.promise.all()是以数组传递的方式将，需要监听的promise对象传进去
+        // 3.当所有的promise对象都是成功状态时，all方法就执行第一个回调函数
+        // 4.只要有一个promise对象是失败状态时，all方法就执行第二个回调函数
+        // 5.当执行的是第一个回调函数时，接收的参数是以数组的形式存储
+        // 6.当执行的是第二个回调函数时，接收的是第一个失败状态的promise对象传递的参数
+        const pall = Promise.all([p1, p2, p3])
+        pall.then(
+            (data) => { console.log(data) }, //['p1','p2','p3']
+            (data) => { console.log(data) })  //123
+    </script>
+</body>
+
+</html>

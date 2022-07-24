@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 注意：generator函数内不可以声明新的函数，不然yield不能使用
+        // 1.generator函数 function 与函数名字之间有个*号，
+        // 2.生成器函数不会被立即调用，而是会返回一个遍历器对象，可以用for of循环
+        // 3.遇到yield就会暂停 ，(yield*表达式) yield参与计算要用括号 
+        // 4. yield 值 == next传递的参数
+        // 5.next传递的参数 ，会作为上一个yield 的值
+        // 6.return 返回值传递到 value 里
+        // 7.yield 像一个索引号，也是一个指针
+        // 8. 用 yield*fn()  调用其他函数
+        function* fn() {
+            console.log('111')
+            let x = yield 1
+            console.log('one:' + x)
+            let y = yield 2
+            console.log('two:' + y)
+            return x + y
+        }
+        let f = fn();
+        console.log(f); // fn的原型对象里有 next方法
+        console.log(f.next()); //{ value: 1, done: false }
+        console.log(f.next(10)); //{ value: 2, done: false }
+        console.log(f.next(20)); //{value: 30, done: true}
+
+        // 输出裴波那契数列
+        function* fn() {
+            let [a, b] = [1, 2];
+            for (; ;) {
+                [a, b] = [b, a + b];
+                yield a
+            }
+        }
+        for (let n of fn()) {
+            if (n > 1000) break;
+            console.log(n)
+        }
+
+        function* fn1(obj) {
+            let objkeys = Object.keys(obj);
+            console.log(objkeys)
+            for(let k of objkeys){
+                console.log([k, obj[k]])
+                yield [k, obj[k]]  
+            }
+        }
+        let obj = {
+            name: 'zhande',
+            age : 18,
+        }
+        // obj[Symbol.iterator] = fn1
+        // console.log(obj)
+        for(let [k,s] of fn1(obj)){
+            console.log(`${k}:${s}`)
+        }
+    </script>
+</body>
+
+</html>

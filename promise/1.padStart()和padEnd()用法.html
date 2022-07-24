@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 补全字符串长度
+        // str.padstart(长度，补充的字符) //向前面开始补充
+        const str = 'x'.padStart(4,'abc')
+        console.log(str) //abcx
+
+        // str.padEnd(长度，补充的字符) //向后开始补充
+        const str2 = 'x'.padEnd(3,'abc')
+        console.log(str2)  //xab
+
+        // 如果补充的长度小于字符串本身的长度，则不会改变
+        const str3 = 'xxxx'.padStart(2,0)
+        console.log(str3)
+
+        // 用来补全的字符串如果长度大于补全长度，截取超出的字符串，原字符串保持不变
+        const str4 = 'xxx'.padStart(10,'0123456789')
+        console.log(str4) //0123456xxx
+
+        // 应用场景 一般用于显示时间,必须需要转换成字符串
+        const date = new Date()
+        const month = date.getMonth()
+        console.log(month.toString().padStart(2, 0))
+    </script>
+</body>
+</html>

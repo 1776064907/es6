@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 箭头函数  =>  ，  function(){} 等价于   ()=>{};  箭头函数不可以具名 fn()=>{}会报错
+        // 1.
+        let fn = (a, b) => {
+            return a + b
+        }
+        console.log(fn(10, 10))
+
+        //  2.
+        let fn1 = (val, val2) => val + val2;  //如果只有一个形参 可以不加括号，如果是用return返回值，可以简写不要大括号和小括号
+        console.log(fn1(10, 30))
+
+        // 3.如果返回的是一个对象或数组的话必须要加括号
+        let fn2 = val3 => ({ uname: val3,age: 24 })
+        console.log(fn2('zhangde'))
+
+        // 用箭头函数 编辑闭包函数
+        let fn3 = (() => {
+            return () => {
+                console.log('hello world')
+            }
+        })()
+        fn3();   //立即函数执行后，返回一个函数给 fn3 相当于 fn3 = ()=>{},所以需要调用fn3()；才会打印值
+
+        let fn4 = (() => () =>'hello world')() 
+        console.log(fn4());
+
+        // 4.箭头函数没有this指向对象，一旦使用箭头函数就相当于没有作用域，那么箭头函数内的this 指向上一个作用域的全局变量
+        let obj = {
+            id : 3,
+            person : function(){   //这里不能用箭头函数，this会向上一个作用域的全局变量  ，window
+                // 不使用箭头函数
+                // document.addEventListener('click',function(e){
+                //     this.doing(e.type)  //这个this指向的是 document
+                // }.bind(this))  
+                // 使用箭头函数
+                document.addEventListener('click',(e)=>{
+                    this.doing(e.type)  //这个this指向的是 person, 使用箭头函数就是按作用域链查找全局变量 
+                })
+            },
+            doing: function(type){
+                console.log(`当前的点击事件${type} 当前的id${this.id}`)
+            }
+        }
+        obj.person();
+
+        // 箭头函数的注意事项 
+        // 1.箭头函数没有 arguments 属性, 普通函数有 argument属性
+        // 2.箭头函数 都是匿名函数， 普通函数有匿名 ，也可以具名
+        // 3.箭头函数没有自己this，只会继承自己的上一层作用域链this ，普通函数的this 指向的是调用它的对象，构造函数的this 指向的是实例化对象
+        // 4.箭头函数不能用于构造函数，普通函数可以
+        // 5.箭头函数没有prototype 原型对象，没有super ，没有new.target
+       
+    </script>
+</body>
+
+</html>

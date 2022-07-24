@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //1.什么是垃圾回收机制
+    // 垃圾回收是指 js里的内存回收， 当js中的 内存不在使用时 ，就会被垃圾回收器自动回收
+
+    //2.什么是内存泄露
+    // 就是 js中的 用完的内存不能被回收 ，没有及时释放，就叫内存泄露
+
+    //3.内存的生命周期 ，
+    // 1.内存分配 ，内存使用 ，内存回收
+    // 2.全局变量的内存一般不会被回收，只能由程序员手动回收 ，也可以关闭浏览器
+    // 3.局部变量的内存 用完了就会被回收
+    function fn (){
+        const name = 'zhandge'
+        console.log(name)
+    }
+    fn();
+    fn();//const 不能重新赋值，但是每调用一次它的值就会被销毁，所以能被重复赋值调用
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            margin: 100px auto;
+            width: 200px;
+            list-style: none;
+            /* border: 1px solid #000; */
+
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 0 5px;
+            width: 200px;
+            height: 30px;
+            border: 2px solid tomato;
+            box-sizing: border-box;
+        }
+
+        a {
+            float: right;
+            margin-top: calc(2.5px);
+
+            text-align: center;
+            text-decoration: none;
+            width: 20px;
+            height: 20px;
+            background-color: aqua;
+            line-height: 20px;
+            border-radius: 3px;
+        }
+
+        .remove {
+            opacity: 0.2;
+
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>zhande.com<a href="javascript:;">x</a></li>
+        <li>zhagjie.caom<a href="javascript:;">x</a></li>
+        <li>zhang.com<a href="javascript:;">x</a></li>
+    </ul>
+    <script>
+        class Demo {
+            constructor() {
+                this.items = document.querySelectorAll('ul>li')
+                this.list = new WeakSet();
+                this.items.forEach(item => this.list.add(item))
+                console.log(this.list)
+                this.run();
+            }
+            run() {
+                this.items.forEach(item => {
+                    let a = item.querySelector('a')
+                    a.addEventListener('click', e => {
+                        let parent = e.target.parentNode
+                        if (this.list.has(parent)) {
+                            parent.classList.add('remove')
+                            this.list.delete(parent)
+                        } else {
+                             parent.classList.remove('remove')
+                             this.list.add(parent)
+                        }
+                    })
+                })
+
+            }
+        }
+        new Demo()
+    </script>
+</body>
+
+</html>

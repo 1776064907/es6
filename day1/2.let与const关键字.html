@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        // let
+        // 1.可以声明变量，没有变量提升
+        // console.log(num);   //报错
+        // let num = 10;
+
+
+        // 2.是一个块级作用域
+        // let num1;
+        // if(1===1){
+        //     let num1= 10;
+        // }
+        // console.log(num1);  //报错， 找不到这个变量
+
+        // 3.不可以重复声明同一个变量
+        // let num2 = 10;
+        // let num2 = 20;  //报错
+
+        // 经典案例for循环
+        var arr = [];
+        for (let i = 0; i < 10; i++) {
+            arr[i] = function () {
+                return i
+            }
+        }
+        console.log(arr[5]()) //5  ,之所以返回10 是因为i变量提升，等arr 调用的时候 i的值 已经是10了 10会覆盖上面所有的值
+        // 但是let 就不会，因为它没有变量提升，是一个块级作用域，
+
+        // 4.const 有let关键字的所有特性 ，也let不同的是 它声明变量的 值不可以修改，一旦赋值就不可以修改
+        // 5.它们 都不会对象全局对象造成污染；
+        let RegExp = 10;
+        console.log(window.RegExp)
+        // const num4 = 10;
+        // num4 = 10;  //报错，不可以修改它的值
+        // 总结，一般默认情况下 用const， 知道需要修改的 用let
+
+        // 如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错
+        var tmp = 123;
+
+        if (true) {
+            tmp = 'abc'; // ReferenceError
+            let tmp;
+        }
+    </script>
+</body>
+
+</html>

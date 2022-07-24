@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p = new Promise((resolve, reject) => {
+            resolve();
+        })
+        // 1.使用then方法放回的是一个新的promise对象,所以可以在后面接着写then方法
+        // 2.放回的新promise对象默认是 fulfilled状态
+        p.then(() => {
+            console.log('success')
+            // 3.默认状态，随意下一个then都是执行第一个回调函数,并且传递的参数默认是undefined
+            // return new Promise((resolve,reject)=>{
+            //     resolve(undefined);
+            // })
+
+            // 4.可以直接return 参数，传递到下一个then作为第一个回调函数的参数
+            // return {name:'张德'}
+
+            // 5.当想让下一个then执行第二个回调函数时，就需要更改默认状态了
+            return new Promise((resolve,reject)=>{
+                reject('zhandge');
+            })
+            // 6.注意：设置下一个then状态时，要看上一个then执行的是第几个回调函数
+        }, () => {
+            console.log('error')
+        }).then((u)=>{
+            console.log('success2',u) // success2 {name:'张德'}
+        },(e)=>{
+            console.log('error2',e) //error2 zhangde
+        })
+        console.log(p)
+    </script>
+</body>
+
+</html>

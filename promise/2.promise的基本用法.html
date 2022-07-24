@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1. promise 是一个构造函数,里面必须要有回调函数不然会报错
+        // const p = new Promise()
+
+        // 2.它有三种状态
+        const p = new Promise((resolve,reject)=>{
+            // 3.一旦状态发生改变，那么之后就不会变化
+            // 调用第一个函数就是由 pending=>fulfill状态
+            // resolve('张德');
+
+            // 4.调用第二个函数由 pending=>reject状态
+            reject(new Error('失败'));
+
+        })
+        // 如果回调函数里没有调用参数那么它就是 pending状态
+        console.log(p)  //pendind
+
+        // 5.
+        p.then((e)=>{
+            // 当是resolve状态时，执行第一个回调函数，并且它能接收参数
+            console.log('success',e)  //success 张德
+        },(e)=>{
+            // 当是reject状态时，执行第二个回调函数，并且它能接收参数
+            console.log('error',e)
+        })
+    </script>
+</body>
+</html>

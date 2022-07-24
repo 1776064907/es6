@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <script>
+        // 1.weakset,里面只能储存 引用数据类型，如果存简单数据类型会报错,例如对象，数组，
+        // 2.let set = new WeakSet([[1,23],function fn(){}])
+        // 3.// 它不能遍历，不能用 set.size
+        let set = new WeakSet()
+        let divs = document.querySelectorAll('div')
+        
+        divs.forEach(function(value){
+           set.add(value)
+        })
+        console.log(set)
+
+        // 获取weakset里的值
+        console.log(set.has(divs[0]))
+
+        // for(let k of set){
+        //     console.log(k)
+        // }
+
+        console.log(set.size)  //undefined
+    </script>
+</body>
+</html>

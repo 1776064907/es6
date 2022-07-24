@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.map是以键值对的形式储存 data ，它的键和值可以是任何数据类型
+        // 2.相同的键会被覆盖
+        // 3.遍历返回的是 键值对 的数组形式
+        
+        // 创建方式   new Map()
+        // let map = new Map();
+        // console.log(map)
+
+        // 1.函数内添加 值
+        let map = new Map([['name','zhande'],['a','b']])
+        console.log(map)
+        // map.set('name', 'notok')  //会覆盖相同的键
+
+        // 2. set 方法 添加值  变量.set(key,value)
+        map.set('word','notok')
+        console.log(map)
+
+        // 3. get方法 获得 值  变量.get(key)  返回的是value
+        console.log(map.get('word'))  //notok
+
+        // 4. delete方法   变量.delete(key)  返回值是 boolean
+        // console.log(map.delete('a'))
+        console.log(map)
+
+        // 5.clear方法，清除map里面所有的值 
+        // map.clear()
+        console.log(map)
+
+        // 6.has 检测  返回值是 boolean
+        console.log(map.has('c'))
+        console.log(map.has('name'))
+        let a = map.keys()
+        console.log(a.next())
+        
+        console.log(a.next())
+        console.log(a.next())
+        console.log(map.values())
+
+        for (let k of map){
+            console.log(k)//['name', 'zhande'],  ['a', 'b'],['word', 'notok']    
+        }
+    </script>
+</body>
+</html>

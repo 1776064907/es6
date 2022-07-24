@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 传统的调用 用遍历方法
+        // 新方法 用 yield*fn()  
+        function* fn(){
+            yield '冰'
+            yield '墩'
+            yield '墩'
+        }
+        // function* fn1(){
+        //     yield '雪'
+        //     yield '容'
+        //     yield '融'
+        //     for(let k of fn()){
+        //         yield k
+        //     }
+        // }
+
+        function* fn1(){
+            yield '雪'
+            yield '容'
+            yield '融'
+            yield*fn()
+        }
+        for(let k of fn1()){
+            console.log(k)
+        }
+    </script>
+</body>
+</html>

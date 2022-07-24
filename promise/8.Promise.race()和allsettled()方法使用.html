@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const delay = ms => {
+            return new Promise(resolve => {
+                setTimeout(resolve, ms)
+            })
+        }
+        const p1 = delay(1000).then(() => {
+            console.log('p1已完成')
+            // 1.为下一个then的第一个回调函数传递参数
+            return 'p1'
+            // return Promise.reject('123')
+
+        })
+        const p2 = delay(1500).then(() => {
+            console.log('p2已完成')
+            return 'p2'
+            // return Promise.reject('失败')
+        })
+        const p3 = Promise.reject('error')
+
+        // 1.Promise.race()方法只会监听第一个promise对象的状态
+        // 2.如果第一个promise对象是成功状态，那么执行第一个回调函数
+        // 3.如果第一个promise对象是失败状态，那么执行第二回调函数
+        // 4.注意它是根据没有使用then方法的promise对象，先把监听
+        const race1 = Promise.race([p1, p2, p3])
+        race1.then(
+            (data) => console.log(data),
+            err => console.log(err) //error
+        )
+
+        // 5.promise.allSettled()方法永远都会执行第一个回调函数，
+        // 它都作用是记录promise对象的状态和返回值，以数组的形式返回数据
+        const settled = Promise.allSettled([p1, p2, p3])
+        settled.then(
+            data => console.log(data)//[{…}, {…}, {…}]
+            // 0: { status: 'fulfilled', value: 'p1' }
+            // 1: { status: 'fulfilled', value: 'p2' }
+            // 2: { status: 'fulfilled', value: 'success' }
+        )
+    </script>
+</body>
+
+</html>

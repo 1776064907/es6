@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+    </div>
+    <script>
+        const obox = document.querySelector('.box')
+        let id = 10;
+        let name = '小马哥';
+        // obox.innerHTML = '<ul><li><p id='+id+'>'+name+'</p></li></ul>'
+        // 模板字符串 tab键上的 ``号，包裹插入字符元素，想要修改的地方用  ${变量名}
+        obox.innerHTML = `<ul>
+        <li id="${id}"><p>${name}</p></li>
+       </ul>`
+    </script>
+</body>
+
+</html>

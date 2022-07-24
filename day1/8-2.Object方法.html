@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1 Object.is(参数1，参数2)   等价于  ===   ，判断是否严格相等
+         console.log(NaN === NaN)  //false
+         console.log(Object.is(NaN,NaN))  //true
+
+        // 2.Object.assign(拷贝的对象，对象1，对象2。。。。),只能浅拷贝
+        let newObj = {};
+        let oldobj = {
+            b:10,
+            c:20,
+            d:{
+                v:100
+            }
+        }
+        Object.assign(newObj,{a:1},oldobj)
+        console.log(newObj)
+        newObj.d.v = 110;
+        console.log(oldobj)  //v 110
+    </script>   
+</body>
+</html>

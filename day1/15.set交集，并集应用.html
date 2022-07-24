@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = new Set([1,2,3,4,5])
+        let b = new Set([3,2,5,6,9])
+        // 并集
+        let ab = new Set([...a,...b])
+        console.log(ab)  //1,2,3,4,5,6,9
+
+        //交集  把共有的找出来
+        let a_b = new Set([...a].filter(function(value){
+            return b.has(value)
+        }))
+        console.log(a_b) // 2,3,5
+
+        // 差集  把a有的b没有的找出来
+        let a__b = new Set([...a].filter(function(value){
+            return !b.has(value)
+        }))
+        console.log(a__b)  //1,4
+    </script>
+</body>
+</html>

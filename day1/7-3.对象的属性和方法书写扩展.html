@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 对象属性和方法书写的 扩展
+        // 1.如果对象的 属性值与属性名相同 则可以简写为    属性名   后面不需要加属性值
+        // 2. 对象的 方法 不需要加function     属性名(){}
+        // 3.可以 对象的属性名 进行拼接[变量 + 'a']
+        // 4.如果想让对象里 属性名是一个变量，需要用[变量]，
+        const name1 = '小马哥';
+        const age1 = '年龄';
+        const obj = {
+            [name1] : name1,  // 相当于   name = name
+            [age1] : age1,
+            work(){
+                console.log(obj)
+            }
+        }
+        obj.work()  //游戏高手
+
+        const x = 10,y = 20;
+        const obj1 = {x,y}  // {x =10,y=20}
+        console.log(obj1.x,obj1.y) //10 ,20
+
+        // 3.可以 对象的属性名 进行拼接   [变量 + 'a']
+        const a = 'a';
+        const obj2 = {
+            [a + 'bc']: '123',
+            [`f` + `bc`](){
+                console.log(this)
+            }
+        }
+        obj2[a + '123'] = '456'
+        console.log(obj2.abc) // 123
+        console.log(obj2.a123)  //456
+        console.log(obj2)
+        //  const obj2 = {
+        //     lunzi : 4,
+        //     get(make){
+        //         if(make < this.lunzi){
+        //             throw new Error('轮子太少了')
+        //         } 
+        //             this.lunzi = make;
+        //     },
+        //     huode(){
+        //         return this.lunzi
+        //     }
+        //  }
+        //  obj2.get(7);
+        //  console.log(obj2.huode())
+    </script>
+</body>
+</html>

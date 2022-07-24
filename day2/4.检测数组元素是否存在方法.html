@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组.includes(搜索的元素)  检测数组内是否有查找的值，返回值是 boolean
+        let arr = [1,3,4,5,7,5]
+        console.log(arr.includes(4))  //true
+        console.log(arr.includes('4')) //false
+
+        // es5检测方法  返回改元素位置的索引号
+        console.log(arr.indexOf('4')) //-1
+        console.log(arr.indexOf(5,4)) //5  从索引4位置开始查找
+    </script>
+</body>
+</html>

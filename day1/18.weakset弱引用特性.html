@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // weakSet 弱引用特性
+        // 它不能遍历，不能用 set.size 
+    let hd = {a:24};
+    let edu = hd;
+      
+    let set = new WeakSet();
+    set.add(hd);
+    
+    // console.log(set)
+
+    hd = null;
+    edu = null;
+    console.log(set)
+
+    
+    </script>
+</body>
+</html>
