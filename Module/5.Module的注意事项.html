@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        // 1.模块化里的this指向的是undefined，由此说明模块化并不是在全局作用域里
+        console.log(this) //undefinde
+        // 2.import关键词具有提升效果，会提升到整个模块的头部,率先执行
+        // js预解析会查看js脚本是否有import关键字，如果有，一定会先执行它，其他代码还没执行，所以import和export命令只能在模块作用域顶层，不能出现在代码块中，不然会报错
+        console.log(12)
+        import './Moduleusehtml/js/export.js'
+
+        // 3.导入导出的复合写法,开发中不推荐这种写法
+        // 复合写法导出，无法在当前模块中使用
+        // export{old} from './Moduleusehtml/js/export.js';
+        
+        // 等价于
+        // 
+        import {old} from './Moduleusehtml/js/export.js';
+        export {old} from './Moduleusehtml/js/export.js';
+        console.log(old)
+    </script>
+</body>
+</html>

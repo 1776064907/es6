@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        // 一.export 的导出导入基本用法
+        // 1.export的基本用法，
+        // export {变量} ;
+        // export const age = 20;  声明或语句
+
+        // 2.导入必须要加中括号，变量名不能随意起
+        // 可以把整个文件导入进来
+        // import './Moduleusehtml/js/export.js'
+        // import {age} from './Moduleusehtml/js/export.js'
+        // console.log(age)
+
+        // 3.同时导入导出多个变量
+        // 可以写多个export
+        // 导出
+        // export { age, fn, Person };
+        // 导入
+        // import { age, fn, Person } from './Moduleusehtml/js/export.js'
+        // console.log(age, fn, Person)
+
+        // 4.整个导入 
+        // 导出
+        // export { age, fn, Person };
+        // 导入
+        // import * as obj from './Moduleusehtml/js/export.js'
+        // console.log(obj)
+
+        // 5.导入导出起别名和同时导入exportdefault和export
+        // 注意：exportdefault导出的必须要写在前面
+        // 导出
+        // export { age as old, fn as func, Person };
+        // 导入
+        import age2,{old,func,Person} from './Moduleusehtml/js/export.js'
+        console.log(age2,old, func, Person)
+
+    </script>
+</body>
+</html>

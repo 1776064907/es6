@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        // 1.一个模块没有使用exportdefault也可以导入文件
+        // 2.如果导入整个文件，能执行被导入文件里的代码，但是不能访问里面的变量
+        import './Moduleusehtml/js/demo.js'
+        // console.log(age) //报错
+
+        // 3.名字可以随便起
+        import aaa from './Moduleusehtml/js/demo.js'
+        console.log(aaa)
+
+        // 4.exportdefault也可以导出任何的值，
+
+        // 5.一个模块只能导出一个 export default
+    </script>
+</body>
+</html>
